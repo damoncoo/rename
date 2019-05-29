@@ -3,7 +3,7 @@ let path = require('path')
 let find = require('./find')
 
 async function findAllClassFiles(project, callback) {
-    let classes = await find.findAllFiles(/\.(h|m|mm|xib|pbxproj|pch)/, project)
+    let classes = await find.findAllFiles(/\.(h|m|mm|xib|pbxproj|pch)$/, project)
     if (callback != null) {
         classes = callback(classes)
     }
