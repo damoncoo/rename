@@ -20,7 +20,7 @@ async function renameClasses(project, option, callback) {
     dms.forEach((dm) => {
         classes.push(`${dm}/contents`)
     })
-    
+
     if (callback != null) {
         classes = callback(classes)
     }
@@ -30,13 +30,20 @@ async function renameClasses(project, option, callback) {
     // 带后缀的h m
     let creghm = new RegExp(`(?<=([\\s\[\(\)"<,:\*/\\-\?\}\^=]))${origin}(?=([A-Z][\\w\+_]+\.(h|m|xib)(\\s|;|")))`, 'g')
 
+    // 类名的plist
+    let plistreg = new RegExp(`(?<=([\>]))${origin}(?=([A-Z][\\w\+_]+))`, 'g')
+
     classes.forEach(classFile => {
+        console.log(`${classFile}`)
         console.log('Replacing Content in : ' + classFile + '')
 
         let ispbxproj = /\.pbxproj$/.test(classFile)
+        let isplist = /\.plist$/.test(classFile)
         let content = fs.readFileSync(classFile, 'utf8')
         if (ispbxproj) {
             content = content.replace(creghm, replace)
+        } else if (isplist) {
+            content = content.replace(plistreg, replace)
         } else {
             content = content.replace(creg, replace)
         }

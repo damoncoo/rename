@@ -6,8 +6,7 @@
   "author": "damon",
   "license": "MIT",
   "dependencies": {
-    "find": "^0.2.9",
-    "node-args": "^2.1.8",
-    "commander": "^2.20.0"
+    "commander": "^3.0.2",
+    "find": "^0.2.9"
   }
 }

@@ -1,38 +1,62 @@
-let args = require('node-args')
+const program = require('commander')
 let image = require('./image')
 let classes = require('./class')
 
-let project = "/Users/Darcy/Desktop/AntBrand/ABProject"
-let step = args.step
+program
+  .command('assets <project>')
+  .option('-o, --old [type]', 'origin prefix')
+  .option('-n, --new [type]', 'new prefix')
+  .action((project, cmdObj) => {
+    console.log('Renameing Assets...')
+    image.renameAllImagesets(project, {
+      old: cmdObj.old,
+      new: cmdObj.new
+    })
+  })
 
-if (step == 1) {
-  image.renameAllImagesets(project, {
-    old: "twpic",
-    new: "sxpic"
+program
+  .command('images <project>')
+  .option('-o, --old [type]', 'origin prefix')
+  .option('-n, --new [type]', 'new prefix')
+  .action((project, cmdObj) => {
+    console.log('Renameing Images...')
+
+    image.renameImages(project, {
+      old: cmdObj.old,
+      new: cmdObj.new,
+      image: function (images) {
+        let filtered = images.filter((classFile) => !/(\.framework|Pods)/.test(classFile))
+        return filtered
+      },
+      classes: function (classes) {
+        let filtered = classes.filter((classFile) => !/(\.xcassets|Pods|\.framework)/.test(classFile))
+        return filtered
+      },
+    })
+
   })
-} else if (step == 2) {  
-  image.renameImages(project, {
-    old: "twpic",
-    new: "sxpic",
-    image: function (images) {
-      let filtered = images.filter((classFile) => !/(\.framework|Pods)/.test(classFile))
+
+program
+  .command('classes <project>')
+  .option('-o, --old [type]', 'origin prefix')
+  .option('-n, --new [type]', 'new prefix')
+  .option('-e, --extra [type]', 'extra classes')
+  .action((project, cmdObj) => {
+
+    console.log('Renameing Classes...')
+    classes.renameClasses(project, {
+      old: cmdObj.old,
+      new: cmdObj.new
+    }, function (classes) {
+
+      let filtered = classes.filter((classFile) => !/(\.framework)|(Pods)/.test(classFile))
+      if (cmdObj.extra && cmdObj.extra.length) {
+        filtered.push(cmdObj.extra)
+      }
       return filtered
-    },
-    classes: function (classes) {
-      let filtered = classes.filter((classFile) => !/(\.xcassets|Pods|\.framework)/.test(classFile))
-      return filtered
-    },
+    })
+
   })
-} else if (step == 3) {
-  // 
-  classes.renameClasses(project, {
-    old: "TW",
-    new: "SX"
-  }, function (classes) {
-    let filtered = classes.filter((classFile) => !/(\.framework)|(Pods)/.test(classFile))
-    return filtered
-  })
-} else {
-  console.log('NO STEP PASSED')
-  process.exit(1)
-}
+
+
+program.parse(process.argv)
