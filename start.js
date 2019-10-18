@@ -1,4 +1,6 @@
-const program = require('commander')
+#!/usr/local/bin/node
+
+let program = require('commander')
 let image = require('./image')
 let classes = require('./class')
 
