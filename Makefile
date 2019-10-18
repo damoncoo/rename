@@ -1,8 +1,18 @@
+PROJECT := ${project}
+OLD_PREFIX := ${old}
+NEW_PREFIX := ${new}
+
 image:
-	node start.js --step 1
-	node start.js --step 2
+	@echo ${PROJECT}
+	@echo ${OLD_PREFIX}
+	@echo ${NEW_PREFIX}	
+
+	node start.js images ${PROJECT} -o ${OLD_PREFIX} -n ${NEW_PREFIX}
+	node start.js assets ${PROJECT} -o ${OLD_PREFIX} -n ${NEW_PREFIX}
 
 class:
-	node start.js --step 3
+	@echo ${PROJECT}
+	@echo ${OLD_PREFIX}
+	@echo ${NEW_PREFIX}	
+	node start.js classes ${PROJECT} -o ${OLD_PREFIX} -n ${NEW_PREFIX}
 
-all: image class

@@ -1,30 +1,21 @@
-# rename
+# rename classes prefix on click
 
---------
+---
 
-# 安装依赖
+# Install Dependency
 
 ### npm
-npm i 
 
-### yarn 
+npm i
+
+### yarn
+
 yarn install
 
-
-# customize
-change names in start.js
-
-
-# start
-
-### classes 
-make all
-
-
 ### images
-make image
 
+make image project=(Your Project Path) new=(Your Original Prefix) old=(Your New Prefix)
 
-### all
-make all
+### class
 
+make classes project=(Your Project Path) new=(Your Original Prefix) old=(Your New Prefix)
