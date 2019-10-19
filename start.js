@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-const program = require('commander')
+let program = require('commander')
 let image = require('./image')
 let classes = require('./class')
 
@@ -22,7 +22,6 @@ program
   .option('-n, --new [type]', 'new prefix')
   .action((project, cmdObj) => {
     console.log('Renameing Images...')
-
     image.renameImages(project, {
       old: cmdObj.old,
       new: cmdObj.new,
@@ -35,7 +34,6 @@ program
         return filtered
       },
     })
-
   })
 
 program
@@ -44,20 +42,17 @@ program
   .option('-n, --new [type]', 'new prefix')
   .option('-e, --extra [type]', 'extra classes')
   .action((project, cmdObj) => {
-
     console.log('Renameing Classes...')
     classes.renameClasses(project, {
       old: cmdObj.old,
       new: cmdObj.new
     }, function (classes) {
-
       let filtered = classes.filter((classFile) => !/(\.framework)|(Pods)/.test(classFile))
       if (cmdObj.extra && cmdObj.extra.length) {
         filtered.push(cmdObj.extra)
       }
       return filtered
     })
-
   })
 
 
