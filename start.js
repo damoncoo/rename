@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 const program = require('commander')
 let image = require('./image')
 let classes = require('./class')
