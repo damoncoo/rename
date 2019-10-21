@@ -56,6 +56,6 @@ program
   })
 
 program.name('rename')
-  .version('1.0.1')
+  .version('1.0.2')
   .helpOption('-h, --help', 'rename classes and image')
   .parse(process.argv)
