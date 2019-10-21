@@ -1,5 +1,5 @@
 {
-  "name": "image",
+  "name": "renamejs",
   "version": "1.0.0",
   "description": "rename image prefix",
   "bin": "./bin/index.js",
