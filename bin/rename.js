@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 
 let program = require('commander')
-let image = require('./image')
-let classes = require('./class')
+let image = require('../image')
+let classes = require('../class')
 
 program
   .command('assets <project>')
@@ -55,5 +55,7 @@ program
     })
   })
 
-
-program.parse(process.argv)
+program.name('rename')
+  .version('0.0.1')
+  .helpOption('-h, --help', 'rename classes and image')
+  .parse(process.argv)

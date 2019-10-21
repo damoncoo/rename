@@ -2,6 +2,7 @@
   "name": "image",
   "version": "1.0.0",
   "description": "rename image prefix",
+  "bin": "./bin/index.js",
   "main": "index.js",
   "author": "damon",
   "license": "MIT",
