@@ -11,7 +11,7 @@
       "program": "${workspaceFolder}/start.js",
       "outFiles": [],
       "args": [
-        "/Users/Darcy/Desktop/AntHouse",
+        "/project/path",
         "-o",
         "MY",
         "-n",
