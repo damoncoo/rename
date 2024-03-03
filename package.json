@@ -8,6 +8,6 @@
   "license": "MIT",
   "dependencies": {
     "commander": "^3.0.2",
-    "find": "^0.2.9"
+    "find": "^0.3.0"
   }
 }

@@ -7,9 +7,10 @@ commander@^3.0.2:
   resolved "https://registry.npm.taobao.org/commander/download/commander-3.0.2.tgz?cache=0&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fcommander%2Fdownload%2Fcommander-3.0.2.tgz#6837c3fb677ad9933d1cfba42dd14d5117d6b39e"
   integrity sha1-aDfD+2d62ZM9HPukLdFNURfWs54=
 
-find@^0.2.9:
-  version "0.2.9"
-  resolved "https://registry.npmjs.org/find/-/find-0.2.9.tgz#4b73f1ff9e56ad91b76e716407fe5ffe6554bb8c"
+find@^0.3.0:
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/find/-/find-0.3.0.tgz#4082e8fc8d8320f1a382b5e4f521b9bc50775cb8"
+  integrity sha512-iSd+O4OEYV/I36Zl8MdYJO0xD82wH528SaCieTVHhclgiYNe9y+yPKSwK+A7/WsmHL1EZ+pYUJBXWTL5qofksw==
   dependencies:
     traverse-chain "~0.1.0"
 
