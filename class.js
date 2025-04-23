@@ -3,12 +3,36 @@ let path = require('path')
 let find = require('./find')
 
 async function findAllClassFiles(project, callback) {
-    let classes = await find.findAllFiles(/\.(h|m|mm|xib|pbxproj|pch)$/, project)
+    let classes = await find.findAllFiles(/\.(h|m|mm|xib|pbxproj|pch|swift)$/, project)
     if (callback != null) {
         classes = callback(classes)
     }
     return classes
 }
+
+async function renameFolders(project, option, callback) {
+    let origin = option.old
+    let replace = option.new
+    let folders = await find.findAllFiles(new RegExp(origin, 'g'), project, true)
+
+    if (callback != null) {
+        folders = callback(folders)
+    }
+
+    folders.forEach(folder => {
+        let basename = path.basename(folder) // 最后一层文件夹
+        let dirname = path.dirname(folder) // 上层文件夹
+        if (new RegExp(origin, 'g').test(basename)) {
+            console.log('Rename'+ basename)
+            basename = basename.replace(new RegExp(`^${origin}`), replace)
+            console.log(folder)
+            console.log(`${dirname}/${basename}`)
+            fs.renameSync(folder, `${dirname}/${basename}`)
+        }
+    })
+}
+
+module.exports.renameFolders = renameFolders
 
 async function renameClasses(project, option, callback) {
 

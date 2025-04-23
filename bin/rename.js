@@ -55,6 +55,25 @@ program
     })
   })
 
+  program
+  .command('folder <project>')
+  .option('-o, --old [type]', 'origin prefix')
+  .option('-n, --new [type]', 'new prefix')
+  .option('-e, --extra [type]', 'extra classes')
+  .action((project, cmdObj) => {
+    console.log('Renameing Folders...')
+    classes.renameFolders(project, {
+      old: cmdObj.old,
+      new: cmdObj.new
+    }, function (classes) {
+      let filtered = classes.filter((classFile) => !/(\.framework)|(Pods)/.test(classFile))
+      if (cmdObj.extra && cmdObj.extra.length) {
+        filtered.push(cmdObj.extra)
+      }
+      return filtered
+    })
+  })
+
 program.name('rename')
   .version('1.0.2')
   .helpOption('-h, --help', 'rename classes and image')
